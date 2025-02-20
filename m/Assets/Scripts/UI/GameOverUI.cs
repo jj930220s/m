@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class GameOverUI : BaseUI
 {
     [SerializeField] private Button restartButton;
     [SerializeField] private Button exitButton;
+    [SerializeField] private TextMeshProUGUI gameOverMsg;
 
 
     public override void Init(UIManager uiManager)
@@ -31,6 +33,11 @@ public class GameOverUI : BaseUI
     public void OnClickExitButton()
     {
         ExitButton();
+    }
+
+    public void SetWaveText(int wave)
+    {
+        gameOverMsg.text="Now Wave : " + wave.ToString(); 
     }
 
     protected override UIState GetUIState()
