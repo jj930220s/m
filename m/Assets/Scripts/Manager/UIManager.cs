@@ -36,8 +36,10 @@ public class UIManager : MonoBehaviour
     {
         ChangeState(UIState.GAME);
     }
-    public void SetGameOver()
+    public void SetGameOver(int waveIndex)
     {
+        gameOverUI.SetWaveText(waveIndex);
+
         ChangeState(UIState.GAMEOVER);
     }    
 
@@ -51,9 +53,6 @@ public class UIManager : MonoBehaviour
     {
         gameUI.UpdateHPSlider(currentHP / maxHp);
     }
-
-
-
 
     public void ChangeState(UIState state)
     {
