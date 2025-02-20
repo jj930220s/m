@@ -11,6 +11,8 @@ public class PlayerController : BaseController
     private GameManager gameManager;
 
     private float basicAttackDelay;
+    private float flipDelay;
+    private float flipTimeCount;
 
     [SerializeField] private RangeWeaponHandler unEquipWeapon;
 
@@ -27,6 +29,8 @@ public class PlayerController : BaseController
         this.gameManager = gameManager;
         camera=Camera.main;
         basicAttackDelay = 1.5f;
+        flipDelay = 2f;
+        flipTimeCount = 0f;
         isFlip = false;
         if(unEquipWeapon != null)
         {
@@ -38,6 +42,12 @@ public class PlayerController : BaseController
         StartCoroutine(StartAutoAttack(basicAttackDelay));
         StartCoroutine(SetTarget());
         StartCoroutine(StartUnEquipAttack());
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        flipTimeCount += Time.deltaTime;
     }
 
     private EnemyController RefreshTarget()
@@ -132,10 +142,17 @@ public class PlayerController : BaseController
 
     private void Flip()
     {
+        if(flipTimeCount<flipDelay)
+        {
+            return;
+        }
+
         isFlip = !isFlip;
         transform.rotation = isFlip? Quaternion.Euler(0, 180, 180): Quaternion.Euler(0, 0, 0);
 
         _rigidbody.position = new Vector2(transform.position.x, transform.position.y * -1);
+        flipTimeCount = 0;
     }
+
 
 }
