@@ -52,7 +52,6 @@ public class BaseController : MonoBehaviour
     {
         HandleAction();
         Rotate(lookDirection);
-        HandleAttackDelay();
     }
 
     protected virtual void FixedUpdate()
@@ -104,16 +103,6 @@ public class BaseController : MonoBehaviour
         knockback = -(other.position - transform.position).normalized * power;
     }
     
-
-    private void HandleAttackDelay()
-    {
-        if (weaponHandler == null)
-            return;
-
-        if (isAttacking)
-            Attack();
-    }
-
     protected virtual void Attack()
     {
         if(lookDirection!=Vector2.zero)

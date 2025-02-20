@@ -83,7 +83,7 @@ public class EnemyController : BaseController
     {
         while(true)
         {
-            isAttacking = true;
+            Attack();
             isCoroutineRunning = true;
             yield return new WaitForSeconds(attackDelay);
             isCoroutineRunning = false;

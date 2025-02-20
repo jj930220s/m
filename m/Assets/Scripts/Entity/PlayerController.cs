@@ -108,7 +108,7 @@ public class PlayerController : BaseController
     {
         while (true)
         {
-            isAttacking = true;
+            Attack();
             yield return new WaitForSeconds(delay);
         }
     }
