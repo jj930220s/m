@@ -65,8 +65,8 @@ public class PlayerController : BaseController
     protected override void HandleAction()
     {
         float horiaontal = Input.GetAxisRaw("Horizontal");
-        float vertical= 0;
-        movementDirection=new Vector2(horiaontal, vertical).normalized;
+
+        movementDirection=new Vector2(horiaontal, 0).normalized;
 
         Vector2 mousePosition = Input.mousePosition;
         Vector2 worldPos = camera.ScreenToWorldPoint(mousePosition);
